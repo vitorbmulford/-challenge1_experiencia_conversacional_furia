@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react"; 
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const images = [
     "/images/furia_hero4.png",
@@ -17,7 +18,7 @@ const SLIDE_INTERVAL = 5000;
 
 export default function Hero() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const { data: session } = useSession(); 
+    const { data: session } = useSession();
 
     const nextImage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -81,6 +82,13 @@ export default function Hero() {
                         <Rocket className="mr-2 w-5 h-5" /> Começar Agora
                     </Button>
                 </div>
+                <p className="mt-8 text-xl md:text-2xl text-gray-200 max-w-3xl leading-relaxed font-medium px-4 pt-10">
+                    Saiba sobre o FURIA CHATBOT
+                </p>
+                <Link href="#features" className="flex items-center gap-4 pt-5">
+                    <Image src="/images/furia_logo.png" alt="Logo FURIA" width={60} height={20} />
+                </Link>
+
             </div>
 
             <div className="absolute bottom-10 left-0 right-0 flex justify-center gap-2 z-30">
