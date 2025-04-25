@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react"; 
 
 const images = [
     "/images/furia_hero4.png",
@@ -16,6 +17,7 @@ const SLIDE_INTERVAL = 5000;
 
 export default function Hero() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const { data: session } = useSession(); 
 
     const nextImage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -34,7 +36,11 @@ export default function Hero() {
     }, [currentImageIndex]);
 
     const handleButtonClick = () => {
-        console.log("Botão Começar Agora clicado!");
+        if (session) {
+            window.location.href = "/chatbot";
+        } else {
+            window.location.href = "/login";
+        }
     };
 
     return (

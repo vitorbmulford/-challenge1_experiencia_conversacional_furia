@@ -27,13 +27,13 @@ export default function Features() {
         <section id="features" className="py-20 bg-gradient-to-b from-[#121212] to-[#1a2a3b] relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16 animate-fade-in">
-                    O CHATBOT FURIA <span className="text-blue-400">QUE VAI ALÉM</span>
+                    O FURIA CHATBOT  <span className="text-blue-400">QUE VAI ALÉM</span>
                 </h2>
                 <p className="text-lg text-blue-200/90 mb-12 text-center">
-                    O chatbot da FURIA não é apenas uma ferramenta de respostas automáticas. Ele é um canal direto entre você e a equipe, criando uma experiência única de interação para os fãs e jogadores. Imagine conversar com o próprio time, tirar dúvidas, receber notícias em tempo real e até mesmo sentir o ritmo de uma partida de eSports — tudo isso com uma agilidade impressionante, como se estivesse no meio de uma jogada de velocidade. Com a IA Ollama por trás, garantimos respostas rápidas e personalizadas, tornando a experiência ainda mais envolvente e realista.
+                    O FURIA CHATBOT não é apenas uma ferramenta de respostas automáticas. Ele é um canal direto entre você e a equipe, criando uma experiência única de interação para os fãs e jogadores. Imagine conversar com o próprio time, tirar dúvidas, receber notícias em tempo real e até mesmo sentir o ritmo de uma partida de eSports — tudo isso com uma agilidade impressionante, como se estivesse no meio de uma jogada de velocidade. Com a IA Ollama por trás, garantimos respostas rápidas e personalizadas, tornando a experiência ainda mais envolvente e realista.
                     A FURIA tem o compromisso de aproximar sua comunidade de forma inovadora, e nosso chatbot é a prova disso. Ele vai além do simples atendimento ao fã, oferecendo uma experiência imersiva que traz a verdadeira essência da equipe para a sua tela.
                 </p>
-                <h3 className="text-3xl text-center font-bold text-white mb-8">Por que o chatbot FURIA é único?</h3>
+                <h3 className="text-3xl text-center font-bold text-white mb-8">Por que o FURIA CHATBOT  é único?</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {features.map((feature, index) => (
                         <Card

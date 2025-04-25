@@ -4,6 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 import { handleAuth } from "../actions/handle-auth";
+import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
     const { data: session, status } = useSession();
@@ -27,6 +28,14 @@ export default function LoginPage() {
         );
     }
 
+    const handleButtonClick = () => {
+        if (session) {
+            window.location.href = "/chatbot";
+        } else {
+            window.location.href = "/login";
+        }
+    };
+
     if (session) {
         return (
             <div className="min-h-screen bg-[#0a0e23] flex items-center justify-center p-4">
@@ -47,14 +56,13 @@ export default function LoginPage() {
                             Você está logado como {session.user?.email}
                         </p>
                     </div>
-
-                    <div className="flex justify-center mt-8">
-                        <button
-                            onClick={() => signOut()}
-                            className="px-6 py-3 w-full justify-center bg-red-600 text-white font-semibold rounded-md shadow-md hover:shadow-lg transition duration-200 hover:bg-red-500"
+                    <div className="mt-16 flex gap-4 justify-center">
+                        <Button
+                            onClick={handleButtonClick}
+                            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 px-8 py-5 text-xl font-barlow-condensed font-bold text-white shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/40 transition-all duration-300 transform hover:scale-105"
                         >
-                            Sair
-                        </button>
+                            Furia Chatbot
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -79,10 +87,17 @@ export default function LoginPage() {
                     <p className="mt-2 text-gray-400 text-sm">
                         {session ? `Você está logado como ${session.user?.email}` : 'Domine o chatbot como um pro player.'}
                     </p>
+
+                    {!session && (
+                        <p className="mt-6 text-gray-300 text-sm">
+                            Para acessar o chatbot e aprimorar sua performance, você precisa estar logado.
+                        </p>
+                    )}
                 </div>
 
                 <div className="flex justify-center mt-8">
                     {session ? (
+
                         <button
                             onClick={() => signOut()}
                             className="px-6 py-3 w-full justify-center bg-red-600 text-white font-semibold rounded-md shadow-md hover:shadow-lg transition duration-200 hover:bg-red-500"

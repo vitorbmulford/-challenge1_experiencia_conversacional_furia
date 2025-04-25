@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { signOut } from "next-auth/react";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -64,6 +65,7 @@ export default function ProfilePage() {
           </div>
         </div>
 
+
         <div className="mt-10 flex flex-col items-center">
           <Button
             onClick={handleSave}
@@ -76,6 +78,14 @@ export default function ProfilePage() {
               Dados salvos com sucesso!
             </p>
           )}
+          <Button
+            variant="outline"
+            onClick={() => signOut()}
+            className="text-white bg-red-600 hover:bg-red-700 hover:text-red border border-red-500 rounded-md py-2 px-4 mt-4 transition-all duration-300"
+          >
+            Sair
+          </Button>
+
         </div>
       </div>
     </div>
