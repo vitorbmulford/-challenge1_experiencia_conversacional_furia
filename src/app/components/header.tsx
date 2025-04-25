@@ -26,10 +26,9 @@ export default function Header() {
             .finally(() => setIsLoading(false));
     }, []);
 
-    // Remover "Profile" do menu principal, mas manter "Chatbot" e "Login"
     const navItems = [
         ...baseNavItems,
-        session ? { label: "Chatbot", href: "/chatbot" } : { label: "Login", href: "/login" },
+        session ? { label: "Chatbot", href: "/chatbot" } : { label: "chabot", href: "/login" },
     ];
 
     const formatName = (fullName: string) => {
