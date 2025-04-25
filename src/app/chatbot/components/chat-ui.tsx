@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { SendHorizonal } from 'lucide-react';
+import { SendHorizonal, Trash } from 'lucide-react';
 
 export default function ChatInterface() {
     const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([]);
@@ -52,11 +52,23 @@ export default function ChatInterface() {
         }
     };
 
+    const handleClearChat = () => {
+        setMessages([]);
+        localStorage.removeItem('furia-chat-history');
+    };
+
     return (
         <div className="flex flex-col h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white">
             <div className="p-4 border-b border-gray-700 bg-gray-900/50 backdrop-blur-sm">
                 <h1 className="text-2xl font-bold text-indigo-400">Furia ChatBot</h1>
                 <p className="text-sm text-gray-400">Powered by Ollama</p>
+                <button
+                    onClick={handleClearChat}
+                    className="text-sm text-red-400 hover:text-red-600 mt-2 flex items-center gap-1"
+                >
+                    <Trash className="h-5 w-5" />
+                    Apagar Chat
+                </button>
             </div>
 
             <div className="flex flex-col flex-1 overflow-hidden">
