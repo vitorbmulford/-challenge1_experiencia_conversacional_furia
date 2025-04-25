@@ -1,5 +1,3 @@
-// app/chatbot/components/chat-ui.tsx
-
 'use client';
 
 import { useState } from 'react';
@@ -32,11 +30,9 @@ export default function ChatInterface() {
         }
     };
 
-
-
     return (
-        <div className="flex flex-col h-full">
-            <div className="flex-1 p-6 space-y-4 overflow-y-auto">
+        <div className="flex flex-col h-full items-center justify-center">
+            <div className="flex-1 p-4 space-y-4 overflow-y-auto w-full max-w-3xl" style={{ maxHeight: '70vh' }}>
                 {messages.map((msg, index) => (
                     <div
                         key={index}
@@ -50,13 +46,13 @@ export default function ChatInterface() {
                 ))}
             </div>
 
-            <div className="p-4 border-t border-indigo-700/30">
+            <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 p-4 bg-gray-800 border-t border-indigo-700/30 rounded-lg shadow-lg w-full max-w-[90%] sm:max-w-[85%] md:max-w-[500px] z-50">
                 <div className="flex gap-2">
                     <Input
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Digite sua mensagem..."
-                        className="bg-gray-800 border-indigo-700/50 text-white"
+                        className="bg-gray-800 border-indigo-700/50 text-white flex-1"
                         onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                     />
                     <Button
