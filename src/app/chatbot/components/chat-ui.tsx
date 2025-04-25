@@ -11,24 +11,47 @@ export default function ChatInterface() {
 
     const handleSend = async () => {
         if (input.trim()) {
+            console.log('handleSend: Iniciando envio da mensagem:', input);
             setMessages([...messages, { text: input, isUser: true }]);
             setInput('');
 
-            console.log("Enviando mensagem:", input);
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: input }),
-            });
+            try {
+                console.log('handleSend: Enviando fetch para /api/chat');
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: input }),
+                });
 
-            const data = await response.json();
-            console.log("Resposta da API:", data.reply);
+                console.log('handleSend: Resposta recebida, status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`Erro na resposta da API: ${response.status} ${response.statusText}`);
+                }
 
-            setMessages((prev) => [...prev, { text: data.reply, isUser: false }]);
+                const data = await response.json();
+                console.log('handleSend: Dados recebidos da API:', data);
+
+                if (!data.reply) {
+                    throw new Error('Nenhuma propriedade "reply" encontrada na resposta da API');
+                }
+
+                console.log('handleSend: Adicionando resposta ao estado:', data.reply);
+                setMessages((prev) => [...prev, { text: data.reply, isUser: false }]);
+            } catch (error: unknown) {
+                console.error('handleSend: Erro ao processar mensagem:', error);
+
+                // Verificar se o erro é do tipo Error
+                const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido. Tente novamente!';
+                setMessages((prev) => [...prev, { text: `Erro: ${errorMessage}`, isUser: false }]);
+            }
+        } else {
+            console.log('handleSend: Input vazio, ignorando');
         }
     };
+
+    console.log('ChatInterface: Renderizando, mensagens:', messages);
 
     return (
         <div className="flex flex-col h-full items-center justify-center">
