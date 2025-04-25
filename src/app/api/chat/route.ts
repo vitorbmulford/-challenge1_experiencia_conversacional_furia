@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-type Commands = "/jogadores" | "/prox-partida" | "/estatisticas";
+type Role = "user" | "assistant";
+type Message = { role: Role; content: string };
 
+type Commands = "/jogadores" | "/prox-partida" | "/estatisticas";
 const commands: Record<Commands, string> = {
   "/jogadores":
     "Lista de jogadores da FURIA: FalleN, yuurih, KSCERATO, skullz, chelo.",
@@ -10,14 +12,23 @@ const commands: Record<Commands, string> = {
   "/estatisticas": "Último jogo: FURIA 2-0 Liquid, KSCERATO com 25 kills.",
 };
 
+const casualGreetings = [
+  "oi",
+  "olá",
+  "ola",
+  "opa",
+  "e aí",
+  "salve",
+  "bom dia",
+  "boa tarde",
+  "boa noite",
+];
+
 export async function POST(req: NextRequest) {
-  console.log("POST /api/chat: Iniciando requisição");
-
   try {
-    const body: { message?: string } = await req.json();
-    console.log("POST /api/chat: Corpo da requisição:", body);
-
-    const message = body.message;
+    const body = await req.json();
+    const message = body.message?.trim().toLowerCase();
+    const history: Message[] = body.history || [];
 
     if (!message || typeof message !== "string") {
       return NextResponse.json(
@@ -26,72 +37,67 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Comando fixo
     if (Object.keys(commands).includes(message)) {
       return NextResponse.json({ reply: commands[message as Commands] });
     }
 
-    console.log(
-      "POST /api/chat: Mensagem não é comando fixo. Enviando para o Ollama..."
-    );
+    // Saudação simples
+    if (casualGreetings.includes(message)) {
+      return NextResponse.json({
+        reply:
+          "Fala aí! 👋 Tudo certo? Me pergunta qualquer coisa sobre a FURIA quando quiser!",
+      });
+    }
 
-    const ollamaResponse = await fetch("http://localhost:11434/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const chatHistory = [
+      {
+        role: "system",
+        content: `
+Você é o assistente oficial da FURIA, especializado em esports. Responda de forma natural e amigável, com empolgação equilibrada.
+- Evite repetir saudações como 'Olá!' toda hora.
+- Fale como se estivesse conversando com um fã que curte o time.
+- Dê respostas breves para perguntas simples, e mais detalhadas quando o usuário pedir.
+        `.trim(),
       },
+      ...history.slice(-6),
+      { role: "user", content: message },
+    ];
+
+    const response = await fetch("http://localhost:11434/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         model: "mistral",
-        messages: [
-          {
-            role: "system",
-            content:
-              "Você é um assistente oficial da FURIA, especializado em esports, e seu objetivo é fornecer informações detalhadas sobre a organização, suas equipes, conquistas e jogadores. Seja sempre amigável, empolgado e profundamente conhecedor do mundo competitivo, especialmente no CS:GO, League of Legends, VALORANT, e outras modalidades em que a FURIA está presente. Responda de maneira envolvente e com paixão pela FURIA, destacando sua história, eventos, torneios e todos os momentos memoráveis da equipe. Mostre o verdadeiro espírito da FURIA e mantenha a conversa descontraída, mas sempre precisa e focada no universo da organização.",
-          },
-          {
-            role: "user",
-            content: message,
-          },
-        ],
+        messages: chatHistory,
         stream: false,
       }),
     });
 
-    if (!ollamaResponse.ok) {
-      const errorText = await ollamaResponse.text();
-      console.error("POST /api/chat: Erro ao acessar o Ollama:", errorText);
+    if (!response.ok) {
+      const errorText = await response.text();
       return NextResponse.json(
         { reply: `Erro ao acessar o Ollama: ${errorText}` },
-        { status: ollamaResponse.status }
+        { status: response.status }
       );
     }
 
-    const data = await ollamaResponse.json();
+    const data = await response.json();
+    const reply = data?.message?.content;
 
-    if (!data?.message?.content) {
-      console.error("POST /api/chat: Resposta inválida do Ollama", data);
+    if (!reply) {
       return NextResponse.json(
         { reply: "Erro: Resposta inválida do modelo local." },
         { status: 500 }
       );
     }
 
-    const reply = data.message.content;
-    console.log("POST /api/chat: Resposta do Ollama:", reply);
-
     return NextResponse.json({ reply });
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error("POST /api/chat: Erro interno:", error.message);
-      return NextResponse.json(
-        { reply: `Erro interno: ${error.message}` },
-        { status: 500 }
-      );
-    } else {
-      console.error("POST /api/chat: Erro interno desconhecido", error);
-      return NextResponse.json(
-        { reply: `Erro interno desconhecido` },
-        { status: 500 }
-      );
-    }
+  } catch (error) {
+    console.error("Erro interno:", error);
+    return NextResponse.json(
+      { reply: "Erro interno ao processar a mensagem." },
+      { status: 500 }
+    );
   }
 }
