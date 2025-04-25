@@ -1,52 +1,109 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+type Role = "user" | "assistant" | "system";
+
+type Message = { role: Role; content: string };
+type Commands = "/jogadores" | "/prox-partida" | "/estatisticas";
+
+const commands: Record<Commands, string> = {
+  "/jogadores":
+    "Lista de jogadores da FURIA: FalleN, yuurih, KSCERATO, skullz, chelo.",
+  "/prox-partida":
+    "Próxima partida: FURIA vs MIBR, 28/04/2025, 19:00 (horário de Brasília).",
+  "/estatisticas": "Último jogo: FURIA 2-0 Liquid, KSCERATO com 25 kills.",
+};
+
+const casualGreetings = [
+  "oi",
+  "olá",
+  "ola",
+  "opa",
+  "e aí",
+  "salve",
+  "bom dia",
+  "boa tarde",
+  "boa noite",
+];
+
+export async function POST(req: NextRequest) {
   try {
-    const { message } = await req.json();
+    const body = await req.json();
+    const message = body.message;
+    const history: Message[] = body.history || [];
 
-    if (!message) {
-      console.error('Message is required');
-      return NextResponse.json({ message: 'Message is required' }, { status: 400 });
+    if (!message || typeof message !== "string") {
+      return NextResponse.json(
+        { reply: "Erro: Mensagem inválida ou não fornecida." },
+        { status: 400 }
+      );
     }
 
-    const openaiApiKey = process.env.OPENAI_API_KEY;
-    if (!openaiApiKey) {
-      console.error('OpenAI API key is missing!');
-      return NextResponse.json({ message: 'OpenAI API key is missing' }, { status: 500 });
+    if (commands[message as Commands]) {
+      return NextResponse.json({
+        reply: commands[message as Commands],
+      });
     }
 
-    console.log('Request received:', message);
+    if (casualGreetings.includes(message.toLowerCase())) {
+      return NextResponse.json({
+        reply:
+          "Fala aí! 👋 Tudo certo? Me pergunta qualquer coisa sobre a FURIA quando quiser!",
+      });
+    }
 
-    const response = await fetch('https://api.openai.com/v1/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${openaiApiKey}`,
-        'Content-Type': 'application/json',
-      },
+    const systemPrompt: Message = {
+      role: "system",
+      content: `
+Você é o assistente oficial da FURIA, especializado em esports.
+Responda de forma descontraída, como se estivesse trocando ideia com um fã do time.
+
+- Evite repetir saudações como 'Olá!' toda hora.
+- Fale como alguém que vive o CS e acompanha o competitivo.
+- Dê respostas breves para perguntas simples.
+- Se o usuário pedir mais detalhes, aí sim pode desenvolver mais.
+- Seja sempre bem-humorado e direto ao ponto.`,
+    };
+
+    const chatHistory = [
+      systemPrompt,
+      ...history,
+      { role: "user", content: message },
+    ];
+
+    const response = await fetch("http://localhost:11434/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo', 
-        messages: [{ role: 'user', content: message }],
+        model: "mistral",
+        messages: chatHistory,
+        stream: false,
       }),
     });
 
     if (!response.ok) {
-      if (response.status === 429) {
-        console.error('Rate limit exceeded: Too many requests (Error 429)');
-        return NextResponse.json({ message: 'Too many requests. Please try again later.' }, { status: 429 });
-      }
-      
-      console.error(`OpenAI API error: ${response.statusText} (status: ${response.status})`);
-      return NextResponse.json({ message: 'Error communicating with OpenAI API' }, { status: response.status });
+      const errorText = await response.text();
+      return NextResponse.json(
+        { reply: `Erro ao acessar o Ollama: ${errorText}` },
+        { status: response.status }
+      );
     }
 
     const data = await response.json();
+    const reply = data?.message?.content;
 
-    console.log('OpenAI response:', data);
+    if (!reply) {
+      return NextResponse.json(
+        { reply: "Erro: Resposta inválida do modelo local." },
+        { status: 500 }
+      );
+    }
 
-    return NextResponse.json(data);
-
+    return NextResponse.json({ reply });
   } catch (error) {
-    console.error('Error during OpenAI request:', error);
-    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
+    console.error("Erro interno:", error);
+    return NextResponse.json(
+      { reply: "Erro interno ao processar a mensagem." },
+      { status: 500 }
+    );
   }
 }
