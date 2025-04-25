@@ -8,13 +8,14 @@ import { SendHorizonal } from 'lucide-react';
 export default function ChatInterface() {
     const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([]);
     const [input, setInput] = useState('');
+    const [isTyping, setIsTyping] = useState(false); 
 
     const handleSend = async () => {
         if (input.trim()) {
             console.log('handleSend: Iniciando envio da mensagem:', input);
             setMessages([...messages, { text: input, isUser: true }]);
             setInput('');
-
+            setIsTyping(true); 
             try {
                 console.log('handleSend: Enviando fetch para /api/chat');
                 const response = await fetch('/api/chat', {
@@ -39,12 +40,13 @@ export default function ChatInterface() {
 
                 console.log('handleSend: Adicionando resposta ao estado:', data.reply);
                 setMessages((prev) => [...prev, { text: data.reply, isUser: false }]);
+                setIsTyping(false);
             } catch (error: unknown) {
                 console.error('handleSend: Erro ao processar mensagem:', error);
 
-                // Verificar se o erro é do tipo Error
                 const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido. Tente novamente!';
                 setMessages((prev) => [...prev, { text: `Erro: ${errorMessage}`, isUser: false }]);
+                setIsTyping(false); 
             }
         } else {
             console.log('handleSend: Input vazio, ignorando');
@@ -67,6 +69,12 @@ export default function ChatInterface() {
                         {msg.text}
                     </div>
                 ))}
+
+                {isTyping && (
+                    <div className="p-4 rounded-lg max-w-[80%] mr-auto bg-gray-700 text-gray-400">
+                        O chatbot está digitando...
+                    </div>
+                )}
             </div>
 
             <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 p-4 bg-gray-800 border-t border-indigo-700/30 rounded-lg shadow-lg w-full max-w-[90%] sm:max-w-[85%] md:max-w-[500px] z-50">

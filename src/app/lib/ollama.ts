@@ -5,7 +5,7 @@ export async function askOllama(message: string) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "mistral", // ou outro modelo que você baixou
+      model: "mistral", 
       prompt: message,
       stream: false,
     }),

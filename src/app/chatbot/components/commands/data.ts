@@ -24,5 +24,4 @@ export const COMMANDS: Command[] = [
     usage: "/estatisticas [jogador?]",
     category: "estatísticas",
   },
-  // Adicione mais comandos...
 ];
