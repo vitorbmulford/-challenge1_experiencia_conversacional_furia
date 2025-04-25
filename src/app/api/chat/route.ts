@@ -5,24 +5,12 @@ type Message = { role: Role; content: string };
 
 type Commands = "/jogadores" | "/prox-partida" | "/estatisticas";
 const commands: Record<Commands, string> = {
-  "/jogadores":
-    "Lista de jogadores da FURIA: FalleN, yuurih, KSCERATO, skullz, chelo.",
-  "/prox-partida":
-    "Próxima partida: FURIA vs MIBR, 28/04/2025, 19:00 (horário de Brasília).",
+  "/jogadores": "Lista de jogadores da FURIA: FalleN, yuurih, KSCERATO, skullz, chelo.",
+  "/prox-partida": "Próxima partida: FURIA vs MIBR, 28/04/2025, 19:00 (horário de Brasília).",
   "/estatisticas": "Último jogo: FURIA 2-0 Liquid, KSCERATO com 25 kills.",
 };
 
-const casualGreetings = [
-  "oi",
-  "olá",
-  "ola",
-  "opa",
-  "e aí",
-  "salve",
-  "bom dia",
-  "boa tarde",
-  "boa noite",
-];
+const casualGreetings = ["oi", "olá", "ola", "opa", "e aí", "salve", "bom dia", "boa tarde", "boa noite"];
 
 export async function POST(req: NextRequest) {
   try {
@@ -31,10 +19,7 @@ export async function POST(req: NextRequest) {
     const history: Message[] = body.history || [];
 
     if (!message || typeof message !== "string") {
-      return NextResponse.json(
-        { reply: "Erro: Mensagem inválida ou não fornecida." },
-        { status: 400 }
-      );
+      return NextResponse.json({ reply: "Erro: Mensagem inválida ou não fornecida." }, { status: 400 });
     }
 
     // Comando fixo
@@ -45,8 +30,7 @@ export async function POST(req: NextRequest) {
     // Saudação simples
     if (casualGreetings.includes(message)) {
       return NextResponse.json({
-        reply:
-          "Fala aí! 👋 Tudo certo? Me pergunta qualquer coisa sobre a FURIA quando quiser!",
+        reply: "Fala aí! 👋 Tudo certo? Me pergunta qualquer coisa sobre a FURIA quando quiser!",
       });
     }
 
@@ -58,46 +42,40 @@ Você é o assistente oficial da FURIA, especializado em esports. Responda de fo
 - Evite repetir saudações como 'Olá!' toda hora.
 - Fale como se estivesse conversando com um fã que curte o time.
 - Dê respostas breves para perguntas simples, e mais detalhadas quando o usuário pedir.
-        `.trim(),
+`.trim(),
       },
       ...history.slice(-6),
       { role: "user", content: message },
     ];
 
-    const response = await fetch("http://localhost:11434/api/chat", {
+    const openaiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
-        model: "mistral",
+        model: "gpt-3.5-turbo",
         messages: chatHistory,
-        stream: false,
+        temperature: 0.7,
       }),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      return NextResponse.json(
-        { reply: `Erro ao acessar o Ollama: ${errorText}` },
-        { status: response.status }
-      );
+    if (!openaiResponse.ok) {
+      const errorText = await openaiResponse.text();
+      return NextResponse.json({ reply: `Erro OpenAI: ${errorText}` }, { status: 500 });
     }
 
-    const data = await response.json();
-    const reply = data?.message?.content;
+    const data = await openaiResponse.json();
+    const reply = data.choices?.[0]?.message?.content;
 
     if (!reply) {
-      return NextResponse.json(
-        { reply: "Erro: Resposta inválida do modelo local." },
-        { status: 500 }
-      );
+      return NextResponse.json({ reply: "Erro: Resposta inválida da OpenAI." }, { status: 500 });
     }
 
     return NextResponse.json({ reply });
   } catch (error) {
     console.error("Erro interno:", error);
-    return NextResponse.json(
-      { reply: "Erro interno ao processar a mensagem." },
-      { status: 500 }
-    );
+    return NextResponse.json({ reply: "Erro interno ao processar a mensagem." }, { status: 500 });
   }
 }
