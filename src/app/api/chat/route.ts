@@ -70,30 +70,35 @@ Responda de forma descontraída, como se estivesse trocando ideia com um fã do 
       { role: "user", content: message },
     ];
 
-    const response = await fetch("http://localhost:11434/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "mistral",
-        messages: chatHistory,
-        stream: false,
-      }),
-    });
+    const response = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "mistralai/mistral-7b-instruct",
+          messages: chatHistory,
+        }),
+      }
+    );
 
     if (!response.ok) {
       const errorText = await response.text();
       return NextResponse.json(
-        { reply: `Erro ao acessar o Ollama: ${errorText}` },
+        { reply: `Erro ao acessar o OpenRouter: ${errorText}` },
         { status: response.status }
       );
     }
 
     const data = await response.json();
-    const reply = data?.message?.content;
+    const reply = data?.choices?.[0]?.message?.content;
 
     if (!reply) {
       return NextResponse.json(
-        { reply: "Erro: Resposta inválida do modelo local." },
+        { reply: "Erro: Resposta inválida do modelo OpenRouter." },
         { status: 500 }
       );
     }
