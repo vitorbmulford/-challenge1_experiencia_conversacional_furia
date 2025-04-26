@@ -56,10 +56,9 @@ Crie um arquivo .env.local na raiz do projeto e adicione as seguintes variáveis
 
 Sempre exibir os detalhes
 
-OPENAI_API_KEY=your_openai_api_key
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-NEXTAUTH_SECRET=your_nextauth_secret
+AUTH_SECRET=your_google_client_id
+AUTH_GOOGLE_ID=your_google_client_secret
+AUTH_GOOGLE_SECRET=your_nextauth_secret
 OPENROUTER_API_KEY=your_openrouter_api_key
 
 4. Inicie o servidor
@@ -69,7 +68,7 @@ Sempre exibir os detalhes
 npm run dev
 
 O projeto estará disponível em http://localhost:3000.
-Exemplos de Uso
+Exemplos de Uso para testar 
 
     Consultar jogadores:
 
@@ -99,36 +98,25 @@ Exemplos de Uso
 
 Estrutura do Projeto
 
-    src/app/api/chat/route.ts: Contém a lógica principal do endpoint de chat.
+    app/about/components: Componentes relacionados à seção "Sobre" do projeto.
 
-    src/pages/api/auth/[...nextauth].ts: Configuração da autenticação utilizando Auth.js.
+    app/actions/handle-auth.ts: Lógica para manipulação da autenticação.
 
-    public/: Assets públicos do projeto.
+    app/api/auth/[...nextauth].ts: Configuração da autenticação utilizando Auth.js.
 
-    styles/: Arquivos de estilização utilizando Tailwind CSS.
+    app/api/chat/route.ts: Lógica principal do endpoint de chat.
 
-    README.md: Documentação do projeto.
+    app/chatbot/components/commands/chat-ui.tsx: Componente da interface de chat.
 
-Contribuição
+    app/components: Componentes gerais do projeto.
 
-    Faça um fork do projeto.
+    app/lib/auth.ts: Funções e lógicas relacionadas à autenticação.
 
-    Crie uma branch para sua feature:
+    app/lib/utils.ts: Funções utilitárias gerais.
 
-Sempre exibir os detalhes
+    app/login/components: Componentes relacionados à tela de login.
 
-git checkout -b minha-feature
+    profile: Diretório relacionado ao perfil do usuário.
 
-Commit suas alterações:
+    /components/ui: Componentes do shadcn
 
-Sempre exibir os detalhes
-
-git commit -m "Minha nova feature"
-
-Faça o push para a branch:
-
-Sempre exibir os detalhes
-
-git push origin minha-feature
-
-Abra um Pull Request.
