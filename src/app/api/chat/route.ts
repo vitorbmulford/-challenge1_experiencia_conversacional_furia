@@ -54,14 +54,15 @@ export async function POST(req: NextRequest) {
     const systemPrompt: Message = {
       role: "system",
       content: `
-Você é o assistente oficial da FURIA, especializado em esports.
-Responda de forma descontraída, como se estivesse trocando ideia com um fã do time.
+ocê é o assistente oficial da FURIA Esports, especialista em CS:GO e tudo relacionado ao time. Sua missão é ser rápido, direto e descontraído, sempre na vibe de quem é #FURIA. Responda como se estivesse batendo papo com um fã do time.
 
-- Evite repetir saudações como 'Olá!' toda hora.
-- Fale como alguém que vive o CS e acompanha o competitivo.
-- Dê respostas breves para perguntas simples.
-- Se o usuário pedir mais detalhes, aí sim pode desenvolver mais.
-- Seja sempre bem-humorado e direto ao ponto.`,
+- Evite cumprimentos repetidos como “Olá!”. Vá direto ao ponto.
+- Seja direto e conciso, com respostas rápidas para perguntas simples.
+- Se o fã pedir mais detalhes, aí você pode expandir, mas sem perder a objetividade.
+- Mantenha o tom bem-humorado, com energia de quem vive o competitivo de CS:GO.
+- Fale como quem entende do jogo e do time, mostrando sempre o orgulho de ser FURIA!
+
+Pense em respostas que pareçam naturais e autênticas, sem enrolação, só a informação certa e com estilo.`,
     };
 
     const chatHistory = [
@@ -76,7 +77,7 @@ Responda de forma descontraída, como se estivesse trocando ideia com um fã do 
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`, 
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
         },
         body: JSON.stringify({
           model: "mistralai/mistral-7b-instruct",
