@@ -1,0 +1,83 @@
+{
+  "esports": {
+    "csgo": {
+      "time": "FURIA CS:GO",
+      "proximo_jogo": "FURIA vs Team Liquid - 27/04 às 20h - ESL Pro League",
+      "ultimas_noticias": [
+        "FURIA vence G2 e avança às semifinais da ESL.",
+        "Art renovou contrato até 2026.",
+        "Yuurih eleito MVP do último campeonato."
+      ],
+      "plantel": ["KSCERATO", "yuurih", "arT", "chelo", "drop"]
+    },
+    "valorant": {
+      "time": "FURIA Valorant",
+      "proximo_jogo": "FURIA vs LOUD - 28/04 às 18h - VCT Americas",
+      "ultimas_noticias": [
+        "FURIA apresenta nova lineup feminina para Game Changers.",
+        "Coach fRoD elogiado por estratégia contra Sentinels."
+      ],
+      "plantel": ["qck", "mazin", "khalil", "nzr", "xand"]
+    },
+    "lol": {
+      "time": "FURIA LoL",
+      "proximo_jogo": "FURIA vs RED Canids - 29/04 às 17h - CBLOL",
+      "ultimas_noticias": [
+        "FURIA garante vaga nos playoffs do CBLOL 2025.",
+        "Envy brilha com performance decisiva."
+      ],
+      "plantel": ["fNb", "Croc", "Envy", "Netuno", "RedBert"]
+    }
+  },
+  "lojinha": {
+    "promocoes": [
+      "Camiseta Oficial 2025 - R$ 99,90",
+      "Boné Panther - R$ 59,90",
+      "Jaqueta Panther Black - R$ 249,90",
+      "Mousepad XL FURIA - R$ 149,90"
+    ],
+    "link_loja": "https://loja.furia.gg"
+  },
+  "streamers": {
+    "oficiais": ["Gaules", "bt0", "yoda", "lukezera", "cellbit"],
+    "femininas": ["Babi", "Bizinha", "CamilotaXP"]
+  },
+  "furia_cash": {
+    "descricao": "Programa de recompensas para fãs. Ganhe pontos ao interagir com conteúdos oficiais e troque por produtos exclusivos!",
+    "como_funciona": "Faça login na plataforma oficial da FURIA Cash, acumule pontos assistindo streams, participando de campanhas e comprando na lojinha."
+  },
+  "noticias_em_alta": [
+    "FURIA entra no Top 5 mundial de CS:GO.",
+    "FURIA anuncia parceria global com Puma até 2030.",
+    "FURIA cria projeto de base para Valorant e LoL."
+  ],
+  "calendario_de_jogos": [
+    {
+      "modalidade": "CS:GO",
+      "data": "27/04/2025",
+      "jogo": "FURIA vs Team Liquid - ESL Pro League"
+    },
+    {
+      "modalidade": "Valorant",
+      "data": "28/04/2025",
+      "jogo": "FURIA vs LOUD - VCT Americas"
+    },
+    {
+      "modalidade": "LoL",
+      "data": "29/04/2025",
+      "jogo": "FURIA vs RED Canids - CBLOL"
+    }
+  ],
+  "campeonato_clipadores": {
+    "descricao": "Competição oficial para clippers de conteúdo FURIA. Poste seus melhores momentos dos jogos, marque a FURIA e concorra a prêmios exclusivos!",
+    "proxima_edicao": "Junho 2025",
+    "premios": [
+      "1° lugar: R$ 5.000 + Produtos FURIA",
+      "2° lugar: R$ 2.500 + Kit exclusivo",
+      "3° lugar: R$ 1.000 + Camiseta oficial"
+    ]
+  },
+  "modo_bate_papo": {
+    "descricao": "Ative o modo bate-papo para conversar livremente sobre a FURIA, tirar dúvidas e interagir com outros fãs!"
+  }
+}

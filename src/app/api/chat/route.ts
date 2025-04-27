@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
 type Role = "user" | "assistant" | "system";
 
@@ -38,6 +40,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Carrega o JSON de dados da FURIA
+    const filePath = path.join(process.cwd(), "data", "furia-data.json");
+    const furiaData = JSON.parse(fs.readFileSync(filePath, "utf8"));
+
     if (commands[message as Commands]) {
       return NextResponse.json({
         reply: commands[message as Commands],
@@ -54,15 +60,18 @@ export async function POST(req: NextRequest) {
     const systemPrompt: Message = {
       role: "system",
       content: `
-ocê é o assistente oficial da FURIA Esports, especialista em CS:GO e tudo relacionado ao time. Sua missão é ser rápido, direto e descontraído, sempre na vibe de quem é #FURIA. Responda como se estivesse batendo papo com um fã do time.
+Você é o assistente oficial da FURIA Esports, especialista em CS:GO, Valorant, LoL e tudo relacionado ao time. 
+Sua missão é ser rápido, direto e descontraído, sempre na vibe de quem é #FURIA.
 
 - Evite cumprimentos repetidos como “Olá!”. Vá direto ao ponto.
 - Seja direto e conciso, com respostas rápidas para perguntas simples.
 - Se o fã pedir mais detalhes, aí você pode expandir, mas sem perder a objetividade.
-- Mantenha o tom bem-humorado, com energia de quem vive o competitivo de CS:GO.
-- Fale como quem entende do jogo e do time, mostrando sempre o orgulho de ser FURIA!
+- Mantenha o tom bem-humorado, com energia de quem vive o competitivo.
+- Use os dados abaixo para responder perguntas:
 
-Pense em respostas que pareçam naturais e autênticas, sem enrolação, só a informação certa e com estilo.`,
+Informações:
+${JSON.stringify(furiaData)}
+      `.trim(),
     };
 
     const chatHistory = [
@@ -88,8 +97,9 @@ Pense em respostas que pareçam naturais e autênticas, sem enrolação, só a i
 
     if (!response.ok) {
       const errorText = await response.text();
+      console.error("Erro na chamada do OpenRouter:", errorText);
       return NextResponse.json(
-        { reply: `Erro ao acessar o OpenRouter: ${errorText}` },
+        { reply: `Erro ao acessar o OpenRouter.` },
         { status: response.status }
       );
     }
@@ -106,7 +116,7 @@ Pense em respostas que pareçam naturais e autênticas, sem enrolação, só a i
 
     return NextResponse.json({ reply });
   } catch (error) {
-    console.error("Erro interno:", error);
+    console.error("Erro interno:", error); 
     return NextResponse.json(
       { reply: "Erro interno ao processar a mensagem." },
       { status: 500 }
