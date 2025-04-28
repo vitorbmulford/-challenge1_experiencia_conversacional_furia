@@ -147,3 +147,5 @@ Estrutura do Projeto
 
     /components/ui: Componentes do shadcn
 
+    /data/furia-data.json: Arquivo para alimentar a IA
+
