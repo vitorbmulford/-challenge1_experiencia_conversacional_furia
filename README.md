@@ -4,6 +4,10 @@ Este projeto é um **assistente conversacional oficial da FURIA**, especializado
 
 Além disso, o projeto utiliza autenticação via **Google**, permitindo o acesso seguro a recursos protegidos.
 
+## Projeto na vercel 
+📍 Acesse o projeto ao vivo:
+https://furirachatia.vercel.app/
+
 ## Funcionalidades
 
 - **IA Conversacional (Mistral 7B Instruct)**:
@@ -50,16 +54,45 @@ Sempre exibir os detalhes
 
 npm install
 
-3. Configure as variáveis de ambiente
+3. Configurar as chaves de API
 
-Crie um arquivo .env.local na raiz do projeto e adicione as seguintes variáveis:
+Para rodar o projeto, você precisará obter algumas chaves e configurar as variáveis de ambiente. Siga os passos abaixo:
 
-Sempre exibir os detalhes
+Chaves do Google (AUTH_GOOGLE_ID e AUTH_GOOGLE_SECRET):
 
-AUTH_SECRET=your_google_client_id
-AUTH_GOOGLE_ID=your_google_client_secret
-AUTH_GOOGLE_SECRET=your_nextauth_secret
-OPENROUTER_API_KEY=your_openrouter_api_key
+  Acesse o Google Cloud Console.
+
+  Crie um projeto e vá em APIs e serviços → Credenciais.
+
+  Crie um ID do Cliente OAuth e copie o ID do Cliente e o Segredo do Cliente.
+
+  Adicione essas chaves no seu .env:
+
+  AUTH_GOOGLE_ID=your_google_client_id
+  AUTH_GOOGLE_SECRET=your_google_client_secret
+
+Chave do NextAuth (AUTH_SECRET):
+
+  npx auth secret
+  
+  Adicione no seu .env:
+  
+  AUTH_SECRET=your_nextauth_secret
+
+Chave da OpenRouter (OPENROUTER_API_KEY):
+  
+  Crie uma conta na OpenRouter e obtenha sua chave de API.
+  
+  Adicione no seu .env:
+  
+  OPENROUTER_API_KEY=your_openrouter_api_key
+
+Exemplo do .env:
+  
+  AUTH_SECRET=your_nextauth_secret
+  AUTH_GOOGLE_ID=your_google_client_id
+  AUTH_GOOGLE_SECRET=your_google_client_secret
+  OPENROUTER_API_KEY=your_openrouter_api_key
 
 4. Inicie o servidor
 
@@ -98,8 +131,6 @@ Exemplos de Uso para testar
 
 Estrutura do Projeto
 
-    app/about/components: Componentes relacionados à seção "Sobre" do projeto.
-
     app/actions/handle-auth.ts: Lógica para manipulação da autenticação.
 
     app/api/auth/[...nextauth].ts: Configuração da autenticação utilizando Auth.js.
@@ -119,4 +150,6 @@ Estrutura do Projeto
     profile: Diretório relacionado ao perfil do usuário.
 
     /components/ui: Componentes do shadcn
+
+    /data/furia-data.json: Arquivo para alimentar a IA
 
