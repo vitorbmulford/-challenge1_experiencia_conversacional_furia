@@ -75,7 +75,7 @@ Chave do NextAuth (AUTH_SECRET):
   
   AUTH_SECRET=your_nextauth_secret
 
-  Chave da OpenRouter (OPENROUTER_API_KEY):
+Chave da OpenRouter (OPENROUTER_API_KEY):
   
   Crie uma conta na OpenRouter e obtenha sua chave de API.
   
