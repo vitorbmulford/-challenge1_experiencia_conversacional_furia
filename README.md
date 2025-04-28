@@ -4,6 +4,10 @@ Este projeto é um **assistente conversacional oficial da FURIA**, especializado
 
 Além disso, o projeto utiliza autenticação via **Google**, permitindo o acesso seguro a recursos protegidos.
 
+## Projeto na vercel 
+📍 Acesse o projeto ao vivo:
+https://furirachatia.vercel.app/
+
 ## Funcionalidades
 
 - **IA Conversacional (Mistral 7B Instruct)**:
