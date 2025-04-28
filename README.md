@@ -98,8 +98,6 @@ Exemplos de Uso para testar
 
 Estrutura do Projeto
 
-    app/about/components: Componentes relacionados à seção "Sobre" do projeto.
-
     app/actions/handle-auth.ts: Lógica para manipulação da autenticação.
 
     app/api/auth/[...nextauth].ts: Configuração da autenticação utilizando Auth.js.
