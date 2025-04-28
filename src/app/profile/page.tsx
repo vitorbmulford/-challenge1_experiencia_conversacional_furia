@@ -23,7 +23,6 @@ export default function ProfilePage() {
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   }
-
   return (
     <div className="min-h-screen bg-[#0a0e23] py-16 px-4">
       <div className="max-w-4xl mx-auto bg-[#111a36] p-8 rounded-xl border border-blue-900/40 shadow-md">
