@@ -58,23 +58,27 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-black/20"></div>
             </div>
 
-            <div className="relative z-10 flex flex-col justify-center items-center text-center h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="mb-6 animate-fade-in">
-                    <span className="text-4xl md:text-5xl font-barlow-condensed font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 tracking-wider">
-                        FURIA CHATBOT
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-4">
+                <div className="mb-6 animate-fade-in flex flex-wrap justify-center">
+                    <span className="text-4xl md:text-5xl font-barlow-condensed font-bold tracking-wider text-white">
+                        FURIA CHAT
+                    </span>
+                    <span className="ml-2 text-4xl md:text-5xl font-barlow-condensed font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
+                        IA
                     </span>
                 </div>
 
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-barlow-condensed tracking-tighter text-white mb-6">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-barlow-condensed tracking-tighter mb-6 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                     <span className="block">DOMINE</span>
                     <span className="block mt-2 text-4xl md:text-6xl lg:text-7xl">O JOGO</span>
                 </h1>
+
 
                 <p className="mt-8 text-xl md:text-2xl text-gray-200 max-w-3xl leading-relaxed font-medium px-4">
                     O chatbot definitivo para elevar sua performance ao nível FURIA
                 </p>
 
-                <div className="mt-16 flex gap-4 justify-center">
+                <div className="mt-16 flex gap-4 justify-center ">
                     <Button
                         onClick={handleButtonClick}
                         className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 px-8 py-5 text-xl font-barlow-condensed font-bold text-white shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/40 transition-all duration-300 transform hover:scale-105"
@@ -82,12 +86,21 @@ export default function Hero() {
                         <Rocket className="mr-2 w-5 h-5" /> Começar Agora
                     </Button>
                 </div>
-                <p className="mt-8 text-xl md:text-2xl text-gray-200 max-w-3xl leading-relaxed font-medium px-4 pt-10">
-                    Saiba sobre o FURIA CHATBOT
-                </p>
-                <Link href="#features" className="flex items-center gap-4 pt-5">
-                    <Image src="/images/furia_logo.png" alt="Logo FURIA" width={60} height={20} />
+
+                <Link href="#features" className="flex flex-col items-center gap-2 mt-10 animate-bounce">
+                    <span className="text-white text-sm">Saiba mais</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-8 w-8 text-blue-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
                 </Link>
+
 
             </div>
 

@@ -1,25 +1,31 @@
-import { Zap, Shield, Cpu } from "lucide-react";
+import { Bot, Bolt, BrainCircuit, MessageSquareQuote } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 export default function Features() {
     const features = [
         {
-            icon: <Zap className="w-16 h-16 text-yellow-500" />,
-            title: "Resposta Instantânea",
-            description: "Como um jogo de ritmo acelerado, respondendo em tempo real para a melhor experiência.",
-            details: "Nosso chatbot FURIA oferece respostas ultra rápidas, como um jogo de FPS de altíssima velocidade. Cada comando é respondido sem delay, garantindo uma experiência fluida e sem interrupções. É uma comunicação direta e sem barreiras com a FURIA, para que você se sinta parte da equipe a qualquer momento.",
+            icon: <Bot className="w-16 h-16 text-purple-400" />,
+            title: "IA de Verdade",
+            description: "Baseada no modelo Mistral 7B Instruct.",
+            details: "Nossa IA não é só script ou resposta pré-programada. Com tecnologia de ponta da Mistral AI, ela gera respostas naturais, personalizadas e inteligentes em tempo real para cada interação.",
         },
         {
-            icon: <Shield className="w-16 h-16 text-green-500" />,
-            title: "Segurança Total",
-            description: "Privacidade e proteção com criptografia de ponta a ponta em cada interação.",
-            details: "As interações com o chatbot FURIA são 100% seguras, com criptografia de última geração. Protegemos seus dados como se estivessem em uma fortaleza digital, permitindo que você tenha uma experiência segura e sem preocupações enquanto interage com a equipe.",
+            icon: <Bolt className="w-16 h-16 text-yellow-400" />,
+            title: "Velocidade Competitiva",
+            description: "Respostas rápidas no ritmo FURIA.",
+            details: "Cada pergunta é respondida no melhor estilo FURIA: rápido, certeiro e sem enrolação. É atendimento instantâneo para quem vive no ritmo do competitivo.",
         },
         {
-            icon: <Cpu className="w-16 h-16 text-blue-500" />,
-            title: "IA Adaptativa",
-            description: "O chatbot aprende com você, adaptando-se às suas preferências e proporcionando uma experiência personalizada.",
-            details: "Cada conversa com o chatbot FURIA o torna mais inteligente. À medida que você interage, ele aprende suas preferências, ajustando suas respostas e se tornando mais preciso e eficiente, exatamente como um jogador que evolui em cada partida.",
+            icon: <BrainCircuit className="w-16 h-16 text-blue-400" />,
+            title: "Adaptação ao Contexto",
+            description: "Expande a conversa quando precisa.",
+            details: "A IA é capaz de entender a necessidade do usuário: sendo direta em perguntas simples, mas também desenvolvendo respostas mais completas quando a situação pede.",
+        },
+        {
+            icon: <MessageSquareQuote className="w-16 h-16 text-green-400" />,
+            title: "Comunicação com Personalidade",
+            description: "A vibe de quem é #FURIA.",
+            details: "Cada resposta traz a energia, humor e estilo que fazem a identidade da FURIA. Nada de robô travado: é papo reto, na linguagem da torcida!",
         },
     ];
 
@@ -27,14 +33,15 @@ export default function Features() {
         <section id="features" className="py-20 bg-gradient-to-b from-[#121212] to-[#1a2a3b] relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16 animate-fade-in">
-                    O FURIA CHATBOT  <span className="text-blue-400">QUE VAI ALÉM</span>
+                    FURIA CHAT IA <span className="text-blue-400">ALÉM DO BÁSICO</span>
                 </h2>
                 <p className="text-lg text-blue-200/90 mb-12 text-center">
-                    O FURIA CHATBOT não é apenas uma ferramenta de respostas automáticas. Ele é um canal direto entre você e a equipe, criando uma experiência única de interação para os fãs e jogadores. Imagine conversar com o próprio time, tirar dúvidas, receber notícias em tempo real e até mesmo sentir o ritmo de uma partida de eSports — tudo isso com uma agilidade impressionante, como se estivesse no meio de uma jogada de velocidade. Com a IA Ollama por trás, garantimos respostas rápidas e personalizadas, tornando a experiência ainda mais envolvente e realista.
-                    A FURIA tem o compromisso de aproximar sua comunidade de forma inovadora, e nosso chatbot é a prova disso. Ele vai além do simples atendimento ao fã, oferecendo uma experiência imersiva que traz a verdadeira essência da equipe para a sua tela.
+                    Alimentado pela Mistral 7B, o FURIA Chat IA é mais que um chatbot: é um parceiro de conversa inteligente, veloz e com a alma do competitivo. Um novo jeito de se conectar com o time que respira e vive o jogo.
                 </p>
-                <h3 className="text-3xl text-center font-bold text-white mb-8">Por que o FURIA CHATBOT  é único?</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <h3 className="text-3xl text-center font-bold text-white mb-8">
+                    O que torna a nossa IA única?
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     {features.map((feature, index) => (
                         <Card
                             key={index}
