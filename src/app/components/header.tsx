@@ -10,7 +10,6 @@ import { Session } from "next-auth";
 
 const baseNavItems = [
     { label: "Início", href: "/" },
-    { label: "Sobre", href: "/about" },
 ];
 
 export default function Header() {
