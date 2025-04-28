@@ -33,7 +33,7 @@ export default function Features() {
         <section id="features" className="py-20 bg-gradient-to-b from-[#121212] to-[#1a2a3b] relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16 animate-fade-in">
-                    FURIA CHAT IA <span className="text-blue-400">ALÉM DO BÁSICO</span>
+                    FURIA CHAT <span className="text-blue-400"> IA </span>  ALÉM DO BÁSICO
                 </h2>
                 <p className="text-lg text-blue-200/90 mb-12 text-center">
                     Alimentado pela Mistral 7B, o FURIA Chat IA é mais que um chatbot: é um parceiro de conversa inteligente, veloz e com a alma do competitivo. Um novo jeito de se conectar com o time que respira e vive o jogo.
@@ -45,7 +45,7 @@ export default function Features() {
                     {features.map((feature, index) => (
                         <Card
                             key={index}
-                            className="p-8 bg-[#121212]/80 border border-blue-300/20 hover:border-blue-300 transition-all transform hover:scale-105 shadow-md shadow-blue-500/10 rounded-lg relative overflow-hidden"
+                            className="p-8 bg-[#121212]/80 border border-blue-300/20 hover:border-blue-300 transition-all transform hover:scale-105 shadow-md shadow-blue-500/10 rounded-xl relative overflow-hidden "
                         >
                             <div className="flex flex-col items-center text-center space-y-6">
                                 {feature.icon}

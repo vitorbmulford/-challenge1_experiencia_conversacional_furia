@@ -81,7 +81,7 @@ export default function Hero() {
                 <div className="mt-16 flex gap-4 justify-center ">
                     <Button
                         onClick={handleButtonClick}
-                        className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 px-8 py-5 text-xl font-barlow-condensed font-bold text-white shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/40 transition-all duration-300 transform hover:scale-105"
+                        className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 px-8 py-5 text-xl font-barlow-condensed font-bold text-white shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/40 transition-all duration-300 transform hover:scale-105 rounded-xl"
                     >
                         <Rocket className="mr-2 w-5 h-5" /> Começar Agora
                     </Button>

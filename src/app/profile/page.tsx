@@ -69,7 +69,7 @@ export default function ProfilePage() {
         <div className="mt-10 flex flex-col items-center">
           <Button
             onClick={handleSave}
-            className="bg-blue-600 hover:bg-blue-700 px-8 py-3 text-white font-barlow-condensed text-lg rounded-md shadow-md"
+            className="bg-blue-600 hover:bg-blue-700 px-8 py-3 text-white font-barlow-condensed text-lg rounded-xl shadow-md "
           >
             Salvar Alterações
           </Button>
@@ -81,7 +81,7 @@ export default function ProfilePage() {
           <Button
             variant="outline"
             onClick={() => signOut()}
-            className="text-white bg-red-600 hover:bg-red-700 hover:text-red border border-red-500 rounded-md py-2 px-4 mt-4 transition-all duration-300"
+            className="text-white bg-red-600 hover:bg-red-700 hover:text-red border border-red-500 rounded-xl  py-2 px-4 mt-4 transition-all duration-300"
           >
             Sair
           </Button>

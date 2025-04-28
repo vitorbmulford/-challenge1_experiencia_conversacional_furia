@@ -27,7 +27,7 @@ export default function Header() {
 
     const navItems = [
         ...baseNavItems,
-        session ? { label: "Chatbot", href: "/chatbot" } : { label: "chabot", href: "/login" },
+        session ? { label: "chat IA", href: "/chatbot" } : { label: "chabot", href: "/login" },
     ];
 
     const formatName = (fullName: string) => {
@@ -88,10 +88,10 @@ export default function Header() {
                                         alt="Avatar"
                                         width={40}
                                         height={40}
-                                        className="rounded-full border-2 border-gray-700 hover:border-blue-500 transition-colors duration-300"
+                                        className="rounded-xl border-2 border-gray-700 hover:border-blue-500 transition-colors duration-300"
                                     />
                                 ) : (
-                                    <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-medium">
+                                    <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-medium">
                                         {session.user?.name?.charAt(0).toUpperCase()}
                                     </div>
                                 )}
@@ -106,7 +106,7 @@ export default function Header() {
                     ) : (
                         <Link
                             href="/login"
-                            className="text-white bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300"
+                            className="text-white bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-300"
                         >
                             Entrar
                         </Link>
@@ -121,7 +121,7 @@ export default function Header() {
                     aria-label="Menu mobile"
                 >
                     <div className="absolute inset-0 bg-blue-400/10 group-hover:bg-blue-400/20 transition-all duration-500"></div>
-                    <div className="absolute inset-0 border border-blue-300/30 rounded-md group-hover:border-blue-200/50 transition-all duration-500"></div>
+                    <div className="absolute inset-0 border border-blue-300/30 rounded-xl group-hover:border-blue-200/50 transition-all duration-500"></div>
                     {isMenuOpen ? (
                         <X className="h-5 w-5 text-blue-300 group-hover:text-blue-200 transition-colors duration-500 relative z-10" />
                     ) : (
@@ -159,7 +159,7 @@ export default function Header() {
                                         className="rounded-full border-2 border-blue-500"
                                     />
                                 ) : (
-                                    <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-medium">
+                                    <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white font-medium">
                                         {session.user?.name?.charAt(0).toUpperCase()}
                                     </div>
                                 )}

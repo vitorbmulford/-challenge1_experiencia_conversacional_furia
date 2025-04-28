@@ -107,7 +107,7 @@ export default function LoginPage() {
                         <form action={handleAuth} className="w-full">
                             <button
                                 type="submit"
-                                className="flex items-center gap-3 px-6 py-3 w-full justify-center bg-white text-gray-700 font-semibold rounded-md shadow-md hover:shadow-lg transition duration-200 hover:bg-gray-100"
+                                className="flex items-center gap-3 px-6 py-3 w-full justify-center bg-white text-gray-700 font-semibold rounded-xl shadow-md hover:shadow-lg transition duration-200 hover:bg-gray-100"
                             >
                                 <FcGoogle className="text-2xl" />
                                 Entrar com Google
