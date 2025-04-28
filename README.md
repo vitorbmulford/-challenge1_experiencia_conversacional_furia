@@ -56,39 +56,39 @@ Para rodar o projeto, você precisará obter algumas chaves e configurar as vari
 
 Chaves do Google (AUTH_GOOGLE_ID e AUTH_GOOGLE_SECRET):
 
-Acesse o Google Cloud Console.
+  Acesse o Google Cloud Console.
 
-Crie um projeto e vá em APIs e serviços → Credenciais.
+  Crie um projeto e vá em APIs e serviços → Credenciais.
 
-Crie um ID do Cliente OAuth e copie o ID do Cliente e o Segredo do Cliente.
+  Crie um ID do Cliente OAuth e copie o ID do Cliente e o Segredo do Cliente.
 
-Adicione essas chaves no seu .env:
+  Adicione essas chaves no seu .env:
 
-AUTH_GOOGLE_ID=your_google_client_id
-AUTH_GOOGLE_SECRET=your_google_client_secret
+  AUTH_GOOGLE_ID=your_google_client_id
+  AUTH_GOOGLE_SECRET=your_google_client_secret
 
 Chave do NextAuth (AUTH_SECRET):
 
-npx auth secret
+  npx auth secret
+  
+  Adicione no seu .env:
+  
+  AUTH_SECRET=your_nextauth_secret
 
-Adicione no seu .env:
-
-AUTH_SECRET=your_nextauth_secret
-
-Chave da OpenRouter (OPENROUTER_API_KEY):
-
-Crie uma conta na OpenRouter e obtenha sua chave de API.
-
-Adicione no seu .env:
-
-OPENROUTER_API_KEY=your_openrouter_api_key
+  Chave da OpenRouter (OPENROUTER_API_KEY):
+  
+  Crie uma conta na OpenRouter e obtenha sua chave de API.
+  
+  Adicione no seu .env:
+  
+  OPENROUTER_API_KEY=your_openrouter_api_key
 
 Exemplo do .env:
-
-AUTH_SECRET=your_nextauth_secret
-AUTH_GOOGLE_ID=your_google_client_id
-AUTH_GOOGLE_SECRET=your_google_client_secret
-OPENROUTER_API_KEY=your_openrouter_api_key
+  
+  AUTH_SECRET=your_nextauth_secret
+  AUTH_GOOGLE_ID=your_google_client_id
+  AUTH_GOOGLE_SECRET=your_google_client_secret
+  OPENROUTER_API_KEY=your_openrouter_api_key
 
 4. Inicie o servidor
 
