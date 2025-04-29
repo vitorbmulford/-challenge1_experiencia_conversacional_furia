@@ -6,7 +6,7 @@ Além disso, o projeto utiliza autenticação via **Google**, permitindo o acess
 
 ## Projeto na vercel 
 📍 Acesse o projeto ao vivo:
-https://furirachatia.vercel.app/
+https://chatbot-furia-ia.vercel.app/
 
 ## Funcionalidades
 
