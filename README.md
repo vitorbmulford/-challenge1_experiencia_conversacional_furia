@@ -8,6 +8,10 @@ Além disso, o projeto utiliza autenticação via **Google**, permitindo o acess
 📍 Acesse o projeto ao vivo:
 https://chatbot-furia-ia.vercel.app/
 
+![image](https://github.com/user-attachments/assets/86ed4500-cbf7-423f-b929-ea1820c9a8b2)
+
+![image](https://github.com/user-attachments/assets/d7918252-d556-4877-a332-da27ecfe7c3d)
+
 ## Funcionalidades
 
 - **IA Conversacional (Mistral 7B Instruct)**:
