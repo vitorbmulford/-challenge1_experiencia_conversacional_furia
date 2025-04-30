@@ -27,7 +27,7 @@ export default function Header() {
 
     const navItems = [
         ...baseNavItems,
-        session ? { label: "chat IA", href: "/chatbot" } : { label: "chabot", href: "/login" },
+        session ? { label: "chat IA", href: "/pages/chatbot" } : { label: "chabot", href: "/pages/login" },
     ];
 
     const formatName = (fullName: string) => {
@@ -81,7 +81,7 @@ export default function Header() {
                 <div className="flex items-center gap-4">
                     {session ? (
                         <div className="flex items-center gap-3">
-                            <Link href="/profile" className="flex items-center gap-3 group">
+                            <Link href="/pages/profile" className="flex items-center gap-3 group">
                                 {session.user?.image ? (
                                     <Image
                                         src={session.user.image}
@@ -105,7 +105,7 @@ export default function Header() {
                         </div>
                     ) : (
                         <Link
-                            href="/login"
+                            href="/pages/login"
                             className="text-white bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-300"
                         >
                             Entrar
@@ -146,7 +146,7 @@ export default function Header() {
                     {session && (
                         <div className="pt-4 border-t border-blue-400/20 w-full text-center">
                             <Link
-                                href="/profile"
+                                href="pages/profile"
                                 className="flex flex-col items-center gap-2"
                                 onClick={() => setIsMenuOpen(false)}
                             >

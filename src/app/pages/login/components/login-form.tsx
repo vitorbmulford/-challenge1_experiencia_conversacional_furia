@@ -1,4 +1,4 @@
-"use client"; // Necessário para hooks/eventos
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -14,7 +14,6 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 
-// Schema de validação
 const formSchema = z.object({
     email: z.string().email("E-mail inválido"),
     password: z.string().min(6, "Senha deve ter 6+ caracteres"),
@@ -28,7 +27,6 @@ export function LoginForm() {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log("Dados do login:", values);
-        // Lógica de autenticação aqui (ex.: Auth.js, Firebase, etc.)
     }
 
     return (

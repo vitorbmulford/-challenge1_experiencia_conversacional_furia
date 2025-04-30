@@ -38,9 +38,9 @@ export default function Hero() {
 
     const handleButtonClick = () => {
         if (session) {
-            window.location.href = "/chatbot";
+            window.location.href = "/pages/chatbot";
         } else {
-            window.location.href = "/login";
+            window.location.href = "/pages/login";
         }
     };
 

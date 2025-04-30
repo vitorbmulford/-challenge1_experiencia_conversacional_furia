@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
-import { handleAuth } from "../actions/handle-auth";
+import { handleAuth } from "../../actions/handle-auth";
 import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
@@ -30,9 +30,9 @@ export default function LoginPage() {
 
     const handleButtonClick = () => {
         if (session) {
-            window.location.href = "/chatbot";
+            window.location.href = "/pages/chatbot";
         } else {
-            window.location.href = "/login";
+            window.location.href = "/pages/login";
         }
     };
 
