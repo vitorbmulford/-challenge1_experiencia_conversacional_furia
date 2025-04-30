@@ -149,9 +149,9 @@ Estrutura do Projeto
 
     app/lib/utils.ts: Funções utilitárias gerais.
 
-    app/login/components: Componentes relacionados à tela de login.
+    app/pages/login/components: Componentes relacionados à tela de login.
 
-    profile: Diretório relacionado ao perfil do usuário.
+    app/pages/profile: Diretório relacionado ao perfil do usuário.
 
     /components/ui: Componentes do shadcn
 
